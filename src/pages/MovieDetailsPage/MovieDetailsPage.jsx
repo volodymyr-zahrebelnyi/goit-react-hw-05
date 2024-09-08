@@ -1,7 +1,4 @@
-// import MovieCast from "../../components/MovieCast";
-// import MovieReviews from "../../components/MovieReviews";
-
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, Suspense } from "react";
 import {
   useParams,
   NavLink,
@@ -10,6 +7,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import { getMovieById } from "../../components/services/movies-api";
+import MovieCast from "../../components/MovieCast/MovieCast";
 
 export default function MovieDetailsPage() {
   const { movieId } = useParams();
@@ -20,6 +18,9 @@ export default function MovieDetailsPage() {
 
   const location = useLocation();
   const backLinkRef = useRef(location.state ?? "/movies");
+
+  const defaultImg =
+    "<https://dl-media.viber.com/10/share/2/long/vibes/icon/image/0x0/95e0/5688fdffb84ff8bed4240bcf3ec5ac81ce591d9fa9558a3a968c630eaba195e0.jpg>";
 
   useEffect(() => {
     async function fetchMovieById() {
@@ -50,10 +51,14 @@ export default function MovieDetailsPage() {
       {movieDetails && (
         <div>
           <img
-            src={`https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`}
-            alt={movieDetails.title}
-            width="300"
-            height="420"
+            src={
+              movieDetails.poster_path
+                ? `https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`
+                : defaultImg
+            }
+            alt="poster"
+            width="250"
+            height="350"
           ></img>
           <h2>{movieDetails.title}</h2>
           <p>Overview: {movieDetails.overview}</p>
@@ -61,6 +66,7 @@ export default function MovieDetailsPage() {
             Genres: {movieDetails.genres.map(genre => genre.name).join(", ")}
           </p>
 
+          <h3>Additional Information</h3>
           <ul>
             <li>
               <NavLink to="cast">Cast</NavLink>
@@ -69,22 +75,12 @@ export default function MovieDetailsPage() {
               <NavLink to="reviews">Reviews</NavLink>
             </li>
           </ul>
-          <Outlet />
+
+          <Suspense>
+            <Outlet />
+          </Suspense>
         </div>
       )}
     </div>
   );
-}
-
-// to={`/movies/${movieId}`}
-
-// const handleGoBack = () => {
-//   searchParams(`movies/${movieId}`, "/");
-//   setSearchParams(searchParams);
-// };
-
-{
-  /* <button onClick={handleGoBack} type="button">
-  Go back
-</button>; */
 }

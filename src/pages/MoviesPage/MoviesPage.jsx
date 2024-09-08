@@ -1,7 +1,9 @@
 import { useSearchParams } from "react-router-dom";
 import { getMovies } from "../../components/services/movies-api";
-import { useState, useEffect } from "react";
-import MovieList from "../../components/MovieList/MovieList";
+import { useState, useEffect, lazy, Suspense } from "react";
+// import MovieList from "../../components/MovieList/MovieList";
+
+const MovieList = lazy(() => import("../../components/MovieList/MovieList"));
 
 export default function MoviesPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -46,20 +48,10 @@ export default function MoviesPage() {
         <input type="text" name="query" />
         <button type="submit">Search</button>
       </form>
-      <MovieList movies={movies} />
+
+      <Suspense>
+        <MovieList movies={movies} />
+      </Suspense>
     </div>
   );
 }
-
-// searchParams.set("title", evt.target.elements.title.value);
-// setSearchParams(searchParams);
-
-// import { fetchMovies } from "../../components/services/movies-api";
-
-// export default function MoviesPage() {
-//   return <div>Movies</div>;
-// }
-
-// const handleSubmit = value => {
-//   setSearchParams({ query: value });
-// };
