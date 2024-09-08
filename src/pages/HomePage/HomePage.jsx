@@ -10,15 +10,22 @@ export default function HomePage() {
   useEffect(() => {
     async function fetchTrendingMovies() {
       try {
+        setLoading(true);
         const movies = await getTrendingMovies();
         setTrandingMovies(movies);
       } catch (error) {
+        setError(true);
         console.error("Error to get tranding movies", error);
+      } finally {
+        setLoading(false);
       }
     }
 
     fetchTrendingMovies();
   }, []);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Failed to load tranding movies.</p>;
 
   return (
     <div>
@@ -27,14 +34,10 @@ export default function HomePage() {
         {trandingMovies.length > 0 &&
           trandingMovies.map(movie => (
             <li key={movie.id}>
-              <Link to={`/trandingMovie/${movie.id}`}>{movie.title}</Link>
+              <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
             </li>
           ))}
       </ul>
     </div>
   );
-}
-
-{
-  /* <a href="">{movie.title}</a> */
 }
