@@ -1,0 +1,11 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  list-style: inside;
+}
+
+.item:hover {
+  color: orangered;
+  text-decoration: underline;
+}

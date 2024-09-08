@@ -6,8 +6,9 @@ import {
   Outlet,
   useLocation,
 } from "react-router-dom";
+import clsx from "clsx";
 import { getMovieById } from "../../components/services/movies-api";
-import MovieCast from "../../components/MovieCast/MovieCast";
+import css from "./MovieDetailsPage.module.css";
 
 export default function MovieDetailsPage() {
   const { movieId } = useParams();
@@ -18,6 +19,10 @@ export default function MovieDetailsPage() {
 
   const location = useLocation();
   const backLinkRef = useRef(location.state ?? "/movies");
+
+  const getNavLinkClass = props => {
+    return clsx(css.link, props.isActive && css.active);
+  };
 
   const defaultImg =
     "<https://dl-media.viber.com/10/share/2/long/vibes/icon/image/0x0/95e0/5688fdffb84ff8bed4240bcf3ec5ac81ce591d9fa9558a3a968c630eaba195e0.jpg>";
@@ -47,32 +52,54 @@ export default function MovieDetailsPage() {
 
   return (
     <div>
-      <Link to={backLinkRef.current}>Go back</Link>
+      <Link to={backLinkRef.current}>
+        <button className={css.back}>← Go back</button>
+      </Link>
       {movieDetails && (
         <div>
-          <img
-            src={
-              movieDetails.poster_path
-                ? `https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`
-                : defaultImg
-            }
-            alt="poster"
-            width="250"
-            height="350"
-          ></img>
-          <h2>{movieDetails.title}</h2>
-          <p>Overview: {movieDetails.overview}</p>
-          <p>
-            Genres: {movieDetails.genres.map(genre => genre.name).join(", ")}
-          </p>
+          <div className={css.movieDetails}>
+            <img
+              src={
+                movieDetails.poster_path
+                  ? `https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`
+                  : defaultImg
+              }
+              alt="poster"
+              width="200"
+              height="300"
+              className={css.img}
+            ></img>
+            <div className={css.movieDetailsDescription}>
+              <h2 className={css.title}>
+                {`${movieDetails.title} (${movieDetails.release_date.slice(
+                  0,
+                  4
+                )})`}
+              </h2>
+              <p>User Score: {Math.round(movieDetails.vote_average * 10)}%</p>
+              <p className={css.overview}>
+                <span className={css.overviewText}>Overview:</span>
+                <br /> {movieDetails.overview}
+              </p>
+              <p className={css.gnres}>
+                <span className={css.overviewText}>Genres:</span>
+                <br />
+                {movieDetails.genres.map(genre => genre.name).join(", ")}
+              </p>
+            </div>
+          </div>
 
           <h3>Additional Information</h3>
-          <ul>
+          <ul className={css.list}>
             <li>
-              <NavLink to="cast">Cast</NavLink>
+              <NavLink to="cast" className={getNavLinkClass}>
+                Cast
+              </NavLink>
             </li>
             <li>
-              <NavLink to="reviews">Reviews</NavLink>
+              <NavLink to="reviews" className={getNavLinkClass}>
+                Reviews
+              </NavLink>
             </li>
           </ul>
 

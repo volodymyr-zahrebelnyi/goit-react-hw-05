@@ -1,0 +1,12 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  list-style: inside;
+  margin-top: 20px;
+}
+
+.item:hover {
+  color: orangered;
+  text-decoration: underline;
+}

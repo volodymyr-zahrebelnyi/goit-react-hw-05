@@ -1,0 +1,78 @@
+.link {
+  text-decoration: none;
+}
+
+.active {
+  color: orangered;
+}
+
+.back {
+  display: block;
+  border: 1px solid black;
+  border-radius: 3px;
+  background-color: rgb(230, 230, 230);
+  color: black;
+  padding-left: 5px;
+  padding-right: 5px;
+  /* margin: 0 auto; */
+  margin-top: 15px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.back:hover {
+  background-color: rgb(213, 211, 211);
+}
+
+.back:active {
+  background-color: rgb(230, 230, 230);
+}
+
+.movieDetails {
+  display: flex;
+  border-bottom: 1px solid grey;
+  box-shadow: 0px 3px 1px rgba(46, 47, 66, 0.08),
+    0px 1px 1px rgba(46, 47, 66, 0.16), 0px 1px 6px rgba(46, 47, 66, 0.08);
+  margin-bottom: 20px;
+}
+
+.img {
+  border: 1px solid grey;
+  /* margin-bottom: 10px; */
+}
+
+.movieDetailsDescription {
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px;
+}
+
+.title {
+  margin-bottom: 15px;
+}
+
+.overview {
+  margin-top: 25px;
+  margin-bottom: 20px;
+}
+
+.gnres {
+  margin-bottom: 10px;
+}
+
+.overviewText {
+  font-weight: bold;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  list-style: inside;
+  padding-bottom: 10px;
+  margin-top: 15px;
+  border-bottom: 1px solid grey;
+  box-shadow: 0px 3px 1px rgba(46, 47, 66, 0.08),
+    0px 1px 1px rgba(46, 47, 66, 0.16), 0px 1px 6px rgba(46, 47, 66, 0.08);
+  margin-bottom: 20px;
+}

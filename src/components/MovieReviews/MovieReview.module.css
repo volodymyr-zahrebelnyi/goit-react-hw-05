@@ -1,0 +1,18 @@
+.list {
+  margin-top: 30px;
+  margin-bottom: 5px;
+}
+
+.item {
+  padding: 5px;
+  margin-bottom: 10px;
+  border: 1px solid grey;
+}
+
+.author {
+  text-decoration: underline;
+}
+
+.span {
+  font-weight: bold;
+}

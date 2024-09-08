@@ -1,11 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getTrendingMovies } from "../../components/services/movies-api";
+import css from "./HomePage.module.css";
 
 export default function HomePage() {
   const [trandingMovies, setTrandingMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+
+  const location = useLocation();
 
   useEffect(() => {
     async function fetchTrendingMovies() {
@@ -30,11 +33,13 @@ export default function HomePage() {
   return (
     <div>
       <h1>Trending today</h1>
-      <ul>
+      <ul className={css.list}>
         {trandingMovies.length > 0 &&
           trandingMovies.map(movie => (
-            <li key={movie.id}>
-              <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
+            <li key={movie.id} className={css.item}>
+              <Link to={`/movies/${movie.id}`} state={location}>
+                {movie.title}
+              </Link>
             </li>
           ))}
       </ul>

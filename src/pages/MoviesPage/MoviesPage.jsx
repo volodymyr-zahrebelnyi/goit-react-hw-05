@@ -1,7 +1,7 @@
 import { useSearchParams } from "react-router-dom";
 import { getMovies } from "../../components/services/movies-api";
 import { useState, useEffect, lazy, Suspense } from "react";
-// import MovieList from "../../components/MovieList/MovieList";
+import css from "./MoviesPage.module.css";
 
 const MovieList = lazy(() => import("../../components/MovieList/MovieList"));
 
@@ -44,9 +44,11 @@ export default function MoviesPage() {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <input type="text" name="query" />
-        <button type="submit">Search</button>
+      <form onSubmit={handleSubmit} className={css.form}>
+        <input type="text" name="query" className={css.input} />
+        <button type="submit" className={css.btn}>
+          Search
+        </button>
       </form>
 
       <Suspense>

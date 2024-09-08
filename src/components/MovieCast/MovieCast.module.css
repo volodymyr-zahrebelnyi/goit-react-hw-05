@@ -1,0 +1,32 @@
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: calc((100% - 20px) / 6);
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+.img {
+  /* width: 100%; */
+  border: 1px solid grey;
+}
+
+.name {
+  font-size: medium;
+  text-align: center;
+}
+
+.character {
+  color: #999;
+  font-size: small;
+  text-align: center;
+}
