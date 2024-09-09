@@ -47,11 +47,10 @@ export default function MovieDetailsPage() {
     fetchMovieById();
   }, [movieId]);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Failed to load movie details.</p>;
-
   return (
     <div>
+      {loading && <p>Loading...</p>}
+      {error && <p>Failed to load movie details.</p>}
       <Link to={backLinkRef.current}>
         <button className={css.back}>← Go back</button>
       </Link>

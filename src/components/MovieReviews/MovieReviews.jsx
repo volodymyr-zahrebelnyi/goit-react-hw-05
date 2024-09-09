@@ -27,11 +27,10 @@ export default function MovieReviews() {
     fetchReviews();
   }, [movieId]);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Failed to load movie's reviews.</p>;
-
   return (
     <div>
+      {loading && <p>Loading...</p>}
+      {error && <p>Failed to load movie's reviews.</p>}
       <ul className={css.list}>
         {reviews.length > 0 ? (
           reviews.map(review => (

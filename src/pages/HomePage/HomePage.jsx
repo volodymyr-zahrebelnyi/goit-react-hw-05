@@ -29,12 +29,11 @@ export default function HomePage() {
     fetchTrendingMovies();
   }, []);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Failed to load tranding movies.</p>;
-
   return (
     <div>
       <h1>Trending today</h1>
+      {loading && <p>Loading...</p>}
+      {error && <p>Failed to load tranding movies.</p>}
       {/* <ul className={css.list}>
         {trandingMovies.length > 0 &&
           trandingMovies.map(movie => (

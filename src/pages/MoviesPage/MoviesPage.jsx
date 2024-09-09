@@ -39,11 +39,10 @@ export default function MoviesPage() {
     evt.target.reset();
   };
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Failed to load movie.</p>;
-
   return (
     <div>
+      {loading && <p>Loading...</p>}
+      {error && <p>Failed to load movie.</p>}
       <form onSubmit={handleSubmit} className={css.form}>
         <input type="text" name="query" className={css.input} />
         <button type="submit" className={css.btn}>

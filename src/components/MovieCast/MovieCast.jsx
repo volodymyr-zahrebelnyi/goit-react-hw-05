@@ -26,11 +26,10 @@ export default function MovieCast() {
     fetchCast();
   }, [movieId]);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Failed to load movie's cast.</p>;
-
   return (
     <div>
+      {loading && <p>Loading...</p>}
+      {error && <p>Failed to load movie's cast.</p>}
       <ul className={css.list}>
         {cast.length > 0 ? (
           cast.map(actor => (
