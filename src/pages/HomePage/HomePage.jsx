@@ -1,7 +1,7 @@
 // import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState, lazy, Suspense } from "react";
 import { getTrendingMovies } from "../../components/services/movies-api";
-// import css from "./HomePage.module.css";
+import css from "./HomePage.module.css";
 
 const MovieList = lazy(() => import("../../components/MovieList/MovieList"));
 
@@ -31,7 +31,7 @@ export default function HomePage() {
 
   return (
     <div>
-      <h1>Trending today</h1>
+      <h1 className={css.header}>Trending today</h1>
       {loading && <p>Loading...</p>}
       {error && <p>Failed to load tranding movies.</p>}
       {/* <ul className={css.list}>
